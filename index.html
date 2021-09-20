@@ -1,12 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        .container {
+            position: absolute;
+            display: block;
+            background-color: rgb(94, 128, 26);
+            height: 300px;
+            width: 400px;
+                        
+        }
 
-	<body>
-	
-	<h1>GitHub Pages</h1>
-	
-	<p>I'm hosted with GitHub Pages.</p>
-	
-	</body>
-	
+        .display{
+            display: block;
+            position: absolute;
+            background-color: white;
+            height: 110px;
+            line-height: 40px;
+            width: 350px;
+            top: 15px;
+            font-size: small;
+            text-align: center;
+            font-family: 'Lucida Sans Regular';
+            font-weight: bold;
+            border-bottom: solid 10px hsl(80, 71%, 20%);
+        }
+
+        ol{
+            display: block;
+            position: absolute;
+            top: 120px;
+        }
+
+        li{
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        li:hover{
+            /* border: dotted 2px black; */
+            cursor: pointer;
+            color: white;
+            /* background-color: rgb(10, 81, 10); */
+            /* border: solid 3px lightseagreen; */
+        }
+
+        .status{
+            display: block;
+            position: absolute;
+            top: 150px;
+            left: 100px;
+        }
+
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="display esconder">o que eh?</div>
+        <ol class="esconder"></ol>
+    </div>
+    <div class="status"></div>
+    <script src="quiz.js"></script>
+</body>
 </html>
