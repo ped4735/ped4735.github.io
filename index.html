@@ -1,70 +1,110 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Quiz Bootstrap</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  
     <style>
-        .container {
-            position: absolute;
-            display: block;
-            background-color: rgb(94, 128, 26);
-            height: 300px;
-            width: 400px;
-                        
+        
+        body{
+          background-color:lightskyblue;
         }
 
-        .display{
-            display: block;
-            position: absolute;
-            background-color: white;
-            height: 110px;
-            line-height: 40px;
-            width: 350px;
-            top: 15px;
-            font-size: small;
-            text-align: center;
-            font-family: 'Lucida Sans Regular';
-            font-weight: bold;
-            border-bottom: solid 10px hsl(80, 71%, 20%);
+        .question{
+          background-color: rgb(87, 167, 216);
+          font-weight: bolder;
+          color:white;
+          border: solid rgba(0, 0, 0, 0.143) 3px;
+          border-radius: 15px;
         }
 
-        ol{
-            display: block;
-            position: absolute;
-            top: 120px;
+        .form-control[type="button"] {
+          margin-bottom: 20px;
+          background-color: rgb(87, 167, 216);
+          color: azure;
         }
 
-        li{
-            font-weight: bold;
-            margin: 10px;
+        .form-control.success[type="button"]  {
+          margin-bottom: 20px;
+          background-color: green;
+          color: azure;
         }
 
-        li:hover{
-            /* border: dotted 2px black; */
-            cursor: pointer;
-            color: white;
-            /* background-color: rgb(10, 81, 10); */
-            /* border: solid 3px lightseagreen; */
+        .form-control.error[type="button"]  {
+          margin-bottom: 20px;
+          background-color: red;
+          color: azure;
         }
 
-        .status{
-            display: block;
-            position: absolute;
-            top: 150px;
-            left: 100px;
+        .form-control[type="button"]:hover{
+          margin-bottom: 20px;
+          /* background-color: rgb(60, 130, 174); */
+          color: azure;
+          font-weight: bold;
+          /* border: solid 2px black; */
         }
 
-       
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="display esconder">o que eh?</div>
-        <ol class="esconder"></ol>
+      <div class="row">
+        <div class="col">
+          <div class="question my-3 p-5 text-justify text-wrap">
+            Question?
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <input class="form-control" type="button">
+        </div>
+        <div class="col-12 col-md-6">
+          <input class="form-control" type="button">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <input class="form-control" type="button">
+        </div>
+        <div class="col-12 col-md-6">
+          <input class="form-control" type="button">
+        </div>
+      </div>
+      <div class="row">
+        <!-- <div class="w-50"></div> -->
+        <div class="col-6 col-md-3">
+          <div class="form-group">
+            <label for="my-select-cat">Category</label>
+            <select id="my-select-cat" class="form-control">
+              <option value="">Any</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="form-group">
+            <label for="my-select-dif">Dificulty</label>
+            <select id="my-select-dif" class="form-control">
+              <option value="">Any</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+         
+      </div>
+      <button type="button" class="button-next align-self-center col-sm-2  btn btn-primary">Next Question</button>
     </div>
-    <div class="status"></div>
+
+    
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="quiz.js"></script>
-</body>
+  </body>
 </html>
