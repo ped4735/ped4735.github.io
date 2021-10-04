@@ -63,7 +63,7 @@ $('select#my-select-cat').change(function () {
 $('.form-control[type="button"]').click(function () {
   $('.button-next').attr('disabled','disabled')
   $('.form-control[type="button"]').each((i,e) =>{
-    if(question.correct_answer == e.value){
+    if(decodeHtml(question.correct_answer) == e.value){
       $(e).addClass('success')
     }else{
       $(e).addClass('error')
@@ -128,7 +128,7 @@ function showQuestion(data) {
     let answers = data.results[0].incorrect_answers
     answers.push(data.results[0].correct_answer)
     shuffleArray(answers)
-    console.log(question)
+    //console.log(question)
 
 
     for (let i = 0; i < alternatives.length; i++) {
