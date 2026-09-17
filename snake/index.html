@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Cobrinha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Snake Game</h1>
+    
+    <div id="menuScreen" class="menu-screen">
+        <h2>Selecione o Modo</h2>
+        <button id="singlePlayerBtn" class="menu-btn">1 Jogador</button>
+        <button id="versusBtn" class="menu-btn versus-btn">2 Jogadores (Versus)</button>
+    </div>
+
+    <div class="game-container hidden" id="gameContainer">
+        <canvas id="gameCanvas" width="500" height="500"></canvas>
+        <div id="scoreBoard">
+            <div id="score1">P1: 0</div>
+            <div id="score2" class="hidden">P2: 0</div>
+        </div>
+        <div id="winnerDisplay" class="hidden">
+            <h2 id="winnerText"></h2>
+            <button id="menuBtn">Voltar ao Menu</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

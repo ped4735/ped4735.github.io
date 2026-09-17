@@ -1,0 +1,146 @@
+body {
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1 {
+    color: #4CAF50;
+}
+
+.menu-screen {
+    text-align: center;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    border: 2px solid #4CAF50;
+}
+
+.menu-screen h2 {
+    margin-bottom: 30px;
+    color: #4CAF50;
+}
+
+.menu-btn {
+    display: block;
+    width: 200px;
+    padding: 15px;
+    margin: 10px auto;
+    font-size: 1.2em;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-btn:hover {
+    background-color: #45a049;
+}
+
+.versus-btn {
+    background-color: #FF5722;
+}
+
+.versus-btn:hover {
+    background-color: #E64A19;
+}
+
+.game-container {
+    position: relative;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #4CAF50;
+}
+
+.game-container.hidden {
+    display: none;
+}
+
+canvas {
+    display: block;
+    background-color: #000;
+    border-radius: 8px;
+}
+
+#scoreBoard {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#score1 {
+    color: #4CAF50;
+}
+
+#score2 {
+    color: #FF5722;
+}
+
+#winnerDisplay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #4CAF50;
+}
+
+#winnerDisplay.hidden {
+    display: none;
+}
+
+#winnerText {
+    color: #FFD700;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+#menuBtn {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#menuBtn:hover {
+    background-color: #45a049;
+}
+
+.controls-info {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+.controls-info span {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: #333;
+    border-radius: 3px;
+}

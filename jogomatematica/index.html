@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Matemática</title>
+
+    <!-- Bootstrap 5 (local, offline) -->
+    <link href="vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+</head>
+<body>
+
+    <!-- TELA INICIAL -->
+    <div id="tela-menu" class="tela ativa">
+        <div class="container-menu">
+            <h1 class="titulo-jogo">🧮 Jogo de Matemática</h1>
+            <p class="subtitulo">Escolha um modo de jogo e divirta-se!</p>
+
+            <div class="botoes-modo" role="group" aria-label="Modos de matemática">
+                <button class="btn-modo adicao" data-modo="adicao">
+                    <span class="modo-icone">➕</span>
+                    <span class="modo-nome">Adição</span>
+                </button>
+                <button class="btn-modo subtracao" data-modo="subtracao">
+                    <span class="modo-icone">➖</span>
+                    <span class="modo-nome">Subtração</span>
+                </button>
+                <button class="btn-modo multiplicacao" data-modo="multiplicacao">
+                    <span class="modo-icone">✖️</span>
+                    <span class="modo-nome">Multiplicação</span>
+                </button>
+                <button class="btn-modo divisao" data-modo="divisao">
+                    <span class="modo-icone">➗</span>
+                    <span class="modo-nome">Divisão</span>
+                </button>
+                <button class="btn-modo misto" data-modo="misto">
+                    <span class="modo-icone">🎲</span>
+                    <span class="modo-nome">Misto</span>
+                </button>
+                <button class="btn-modo contagem" data-modo="contagem">
+                    <span class="modo-icone">🔢</span>
+                    <span class="modo-nome">Contagem</span>
+                </button>
+                <button class="btn-modo maior-menor" data-modo="maior-menor">
+                    <span class="modo-icone">⚖️</span>
+                    <span class="modo-nome">Maior/Menor</span>
+                </button>
+                <button class="btn-modo operacao-inversa" data-modo="operacao-inversa">
+                    <span class="modo-icone">🔄</span>
+                    <span class="modo-nome">Operação Inversa</span>
+                </button>
+                <button class="btn-modo fracoes" data-modo="fracoes">
+                    <span class="modo-icone">🍕</span>
+                    <span class="modo-nome">Frações</span>
+                </button>
+                <button class="btn-modo sequencias" data-modo="sequencias">
+                    <span class="modo-icone">📈</span>
+                    <span class="modo-nome">Sequências</span>
+                </button>
+                <button class="btn-modo encadeadas" data-modo="encadeadas">
+                    <span class="modo-icone">🔗</span>
+                    <span class="modo-nome">Encadeadas</span>
+                </button>
+            </div>
+
+            <div class="seletor-avatar">
+                <label>Escolha seu avatar:</label>
+                <div id="avatar-seletor" class="avatar-seletor"></div>
+            </div>
+
+            <div class="controles-acessibilidade" aria-label="Controles de acessibilidade">
+                <span>Ajustar texto:</span>
+                <button id="btn-fonte-menor" type="button" aria-label="Diminuir tamanho do texto">A-</button>
+                <button id="btn-fonte-maior" type="button" aria-label="Aumentar tamanho do texto">A+</button>
+            </div>
+
+            <div class="seletor-jogador">
+                <label>Nome do jogador:</label>
+                <input id="nome-jogador" class="input-jogador" type="text" maxlength="18" value="Aluno">
+                <div id="duelo-nomes" class="duelo-nomes" style="display:none;">
+                    <input id="nome-jogador-1" class="input-jogador" type="text" maxlength="18" value="Jogador 1">
+                    <input id="nome-jogador-2" class="input-jogador" type="text" maxlength="18" value="Jogador 2">
+                </div>
+            </div>
+
+            <div class="seletor-modo-jogo">
+                <label>Modo de Jogo:</label>
+                <div class="btn-group" role="group" aria-label="Modo de jogo">
+                    <button class="btn-modo-jogo ativo" data-modo-jogo="classico">Clássico</button>
+                    <button class="btn-modo-jogo" data-modo-jogo="relampago">⚡ Relâmpago</button>
+                    <button class="btn-modo-jogo" data-modo-jogo="vidas">❤️ Vidas</button>
+                    <button class="btn-modo-jogo" data-modo-jogo="diario">📅 Diário</button>
+                    <button class="btn-modo-jogo" data-modo-jogo="duelo">⚔️ Duelo</button>
+                </div>
+            </div>
+
+            <div class="seletor-dificuldade">
+                <label>Dificuldade:</label>
+                <div class="btn-group" role="group" aria-label="Dificuldade">
+                    <button class="btn-dif ativo" data-dif="facil">Fácil</button>
+                    <button class="btn-dif" data-dif="medio">Médio</button>
+                    <button class="btn-dif" data-dif="dificil">Difícil</button>
+                </div>
+            </div>
+
+            <div class="seletor-adaptativo">
+                <label class="switch-label">
+                    <input type="checkbox" id="toggle-adaptativo" checked>
+                    <span class="switch-text">📏 Dificuldade Adaptativa</span>
+                </label>
+            </div>
+
+            <button id="btn-jogar" class="btn-jogar">▶ Jogar</button>
+
+            <div class="ranking-card">
+                <div class="ranking-topo">
+                    <h3>🏅 Recordes</h3>
+                    <button id="btn-limpar-ranking" class="btn-link-pequeno">Limpar</button>
+                </div>
+                <ol id="ranking-lista" class="ranking-lista"></ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- TELA DE JOGO -->
+    <div id="tela-jogo" class="tela">
+        <div class="container-jogo">
+            <div class="barra-superior">
+                <button id="btn-voltar" class="btn-voltar">← Menu</button>
+                <div class="info-jogo">
+                    <span id="modo-atual" class="badge-modo" aria-label="Modo atual">Modo</span>
+                    <span class="info-item">⭐ <span id="pontuacao">0</span></span>
+                    <span id="info-timer" class="info-item">⏱️ <span id="timer">60</span>s</span>
+                    <span id="info-perguntas" class="info-item" style="display:none;">📝 <span id="perguntas-contador">0/10</span></span>
+                    <span id="info-vidas" class="info-item" style="display:none;">❤️ <span id="vidas">3</span></span>
+                    <button id="btn-mudo" class="btn-mudo" title="Som">🔊</button>
+                </div>
+            </div>
+
+            <div id="barra-xp" class="barra-xp">
+                <div id="xp-preenchimento" class="xp-preenchimento"></div>
+                <span id="xp-texto" class="xp-texto">Nível 1 - Aprendiz</span>
+            </div>
+
+            <div id="avatar-jogo" class="avatar-jogo">🦊</div>
+            <div id="duelo-info" class="duelo-info" style="display:none;"></div>
+
+            <div class="area-pergunta" aria-labelledby="pergunta-texto">
+                <div class="pergunta-card">
+                    <span id="pergunta-texto" class="pergunta-texto">? + ? =</span>
+                    <div id="dropzone" class="dropzone" role="status" aria-live="polite">
+                        <span class="dropzone-placeholder">Selecione uma resposta</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="feedback-msg" class="feedback-msg" role="status" aria-live="polite"></div>
+
+            <div class="area-respostas" aria-label="Opções de resposta">
+                <div id="respostas-container" class="respostas-container">
+                    <!-- Opções geradas dinamicamente -->
+                </div>
+            </div>
+
+            <div class="barra-inferior">
+                <span class="info-item">✅ <span id="acertos">0</span></span>
+                <span class="info-item">❌ <span id="erros">0</span></span>
+                <span class="info-item">🔥 Sequência: <span id="sequencia">0</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- TELA DE FIM DE JOGO -->
+    <div id="tela-fim" class="tela">
+        <div class="container-fim">
+            <h2 id="fim-titulo" class="fim-titulo">Fim de Jogo!</h2>
+            <div class="fim-estrelas" id="fim-estrelas"></div>
+            <div id="fim-contexto" class="fim-contexto"></div>
+            <div class="fim-stats">
+                <div class="stat-item">
+                    <span class="stat-valor" id="fim-pontos">0</span>
+                    <span class="stat-label">Pontos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-valor" id="fim-acertos">0</span>
+                    <span class="stat-label">Acertos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-valor" id="fim-erros">0</span>
+                    <span class="stat-label">Erros</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-valor" id="fim-sequencia">0</span>
+                    <span class="stat-label">Maior Sequência</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-valor" id="fim-aproveitamento">0%</span>
+                    <span class="stat-label">Aproveitamento</span>
+                </div>
+            </div>
+            <button id="btn-reiniciar" class="btn-jogar">🔄 Jogar Novamente</button>
+            <button id="btn-compartilhar" class="btn-voltar mt-3">📤 Compartilhar Resultado</button>
+            <button id="btn-menu-fim" class="btn-voltar mt-3">← Voltar ao Menu</button>
+        </div>
+    </div>
+
+    <!-- Service Worker (PWA offline) -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./service-worker.js')
+            .catch((err) => console.log('SW register failed:', err));
+        });
+      }
+    </script>
+    <!-- Game Logic (ES modules) -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

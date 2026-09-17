@@ -1,0 +1,73 @@
+export const estado = {
+  modo: 'adicao',
+  dificuldade: 'facil',
+  pontos: 0,
+  acertos: 0,
+  erros: 0,
+  sequencia: 0,
+  maxSequencia: 0,
+  tempoRestante: 60,
+  timerId: null,
+  jogoAtivo: false,
+  perguntaAtual: null,
+  respostas: [],
+  respostaCorreta: null,
+  processando: false,
+  adaptativo: true,
+  maxNumAjustado: null,
+  acertosSeguidos: 0,
+  errosSeguidos: 0,
+  somLigado: true,
+  avatar: '🦊',
+  vidas: 3,
+  perguntasRespondidas: 0,
+  modoJogo: 'classico',
+  nomeJogador: 'Aluno',
+  desafioDiario: {
+    ativo: false,
+    restantes: 5,
+    data: null,
+  },
+  duelo: {
+    ativo: false,
+    jogadorAtual: 0,
+    nomes: ['Jogador 1', 'Jogador 2'],
+    pontos: [0, 0],
+    rodada: 1,
+    maxRodadas: 10,
+  },
+};
+
+export const CONFIG = {
+  facil: { tempo: 60, maxNum: 10 },
+  medio: { tempo: 45, maxNum: 25 },
+  dificil: { tempo: 30, maxNum: 50 },
+};
+
+export const NOMES_MODOS = {
+  adicao: 'Adição',
+  subtracao: 'Subtração',
+  multiplicacao: 'Multiplicação',
+  divisao: 'Divisão',
+  misto: 'Misto',
+  contagem: 'Contagem',
+  'maior-menor': 'Maior/Menor',
+  'operacao-inversa': 'Operação Inversa',
+  fracoes: 'Frações',
+  sequencias: 'Sequências',
+  encadeadas: 'Operações Encadeadas',
+};
+
+export const CORES_MODOS = {
+  adicao: '#27ae60',
+  subtracao: '#e67e22',
+  multiplicacao: '#8e44ad',
+  divisao: '#2980b9',
+  misto: '#c0392b',
+  contagem: '#16a085',
+  'maior-menor': '#d35400',
+  'operacao-inversa': '#27ae60',
+  fracoes: '#8e44ad',
+  sequencias: '#2980b9',
+  encadeadas: '#c0392b',
+};

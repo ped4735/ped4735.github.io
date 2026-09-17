@@ -1,0 +1,38 @@
+{
+  "titulo": "Meus projetos",
+  "paginaInicial": "quiz",
+  "itens": [
+    {
+      "tipo": "grupo",
+      "nome": "Jogos",
+      "icone": "🎮",
+      "aberto": true,
+      "itens": [
+        {
+          "id": "quiz",
+          "nome": "Quiz",
+          "arquivo": "quiz/quiz.html",
+          "icone": "🧠"
+        },
+        {
+          "id": "jogo-matematica",
+          "nome": "Jogo de Matemática",
+          "arquivo": "jogomatematica/index.html",
+          "icone": "🔢"
+        },
+        {
+          "id": "flappy",
+          "nome": "Flappy Bird",
+          "arquivo": "flappy/index.html",
+          "icone": "🐦"
+        },
+        {
+          "id": "snake",
+          "nome": "Snake",
+          "arquivo": "snake/index.html",
+          "icone": "🐍"
+        }
+      ]
+    }
+  ]
+}

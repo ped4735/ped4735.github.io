@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Quiz</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <style>
+      :root {
+        --page-bg: #f4f7fb;
+        --panel: #ffffff;
+        --text: #172033;
+        --muted: #667085;
+        --line: #d9e2ec;
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --success: #15803d;
+        --success-bg: #dcfce7;
+        --danger: #b91c1c;
+        --danger-bg: #fee2e2;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        background:
+          radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 32rem),
+          var(--page-bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      }
+
+      .app-shell {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px 0;
+      }
+
+      .app-shell .container {
+        width: min(100% - 32px, 920px);
+        max-width: 920px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .quiz-card {
+        width: 100%;
+        min-height: 560px;
+        display: flex;
+        flex-direction: column;
+        background: var(--panel);
+        border: 1px solid rgba(23, 32, 51, 0.08);
+        border-radius: 8px;
+        box-shadow: 0 24px 70px rgba(23, 32, 51, 0.12);
+        padding: 28px;
+      }
+
+      .quiz-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 22px;
+        margin-bottom: 24px;
+      }
+
+      .quiz-title {
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: 750;
+        letter-spacing: 0;
+      }
+
+      .quiz-controls {
+        display: grid;
+        grid-template-columns: minmax(150px, 1fr) minmax(130px, 0.8fr);
+        gap: 12px;
+        min-width: 330px;
+      }
+
+      .quiz-controls label {
+        margin-bottom: 6px;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .quiz-controls .form-control {
+        height: 42px;
+        border-color: var(--line);
+        border-radius: 6px;
+        color: var(--text);
+      }
+
+      .question {
+        min-height: 150px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 22px;
+        padding: 26px;
+        background: #f8fafc;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--text);
+        font-size: clamp(1.2rem, 2vw, 1.65rem);
+        font-weight: 700;
+        line-height: 1.35;
+      }
+
+      .question.loading {
+        position: relative;
+        overflow: hidden;
+        color: transparent;
+      }
+
+      .question.loading::before,
+      .answer-button.loading::before {
+        content: "";
+        display: block;
+        width: 100%;
+        min-height: 24px;
+        border-radius: 6px;
+        background: linear-gradient(90deg, #e7edf5 25%, #f5f8fc 37%, #e7edf5 63%);
+        background-size: 400% 100%;
+        animation: loading-shimmer 1.2s ease-in-out infinite;
+      }
+
+      .answers {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        min-height: 130px;
+      }
+
+      .answer-button {
+        width: 100%;
+        min-height: 58px;
+        height: auto;
+        padding: 13px 16px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        color: var(--text);
+        cursor: pointer;
+        font-weight: 650;
+        line-height: 1.25;
+        white-space: normal;
+        box-shadow: 0 1px 2px rgba(23, 32, 51, 0.05);
+        transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease, background-color 160ms ease;
+      }
+
+      .answer-button:hover:not(:disabled) {
+        border-color: rgba(37, 99, 235, 0.45);
+        box-shadow: 0 10px 22px rgba(37, 99, 235, 0.12);
+        transform: translateY(-1px);
+      }
+
+      .answer-button:disabled {
+        cursor: default;
+        opacity: 0.78;
+      }
+
+      .answer-button.loading {
+        color: transparent;
+        pointer-events: none;
+      }
+
+      .answer-button.success {
+        border-color: rgba(21, 128, 61, 0.38);
+        background: var(--success-bg);
+        color: var(--success);
+      }
+
+      .answer-button.error {
+        border-color: rgba(185, 28, 28, 0.32);
+        background: var(--danger-bg);
+        color: var(--danger);
+      }
+
+      .quiz-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+        margin-top: 20px;
+      }
+
+      .button-next,
+      .button-refresh {
+        min-width: 150px;
+        min-height: 44px;
+        border: 0;
+        border-radius: 6px;
+        background: var(--primary);
+        font-weight: 700;
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.22);
+      }
+
+      .button-next:hover:not(:disabled),
+      .button-refresh:hover:not(:disabled) {
+        background: var(--primary-dark);
+      }
+
+      .button-next:disabled,
+      .button-refresh:disabled {
+        cursor: default;
+        opacity: 0.72;
+      }
+
+      .quiz-status {
+        min-height: 22px;
+        margin-top: 16px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .quiz-status.error {
+        color: var(--danger);
+        font-weight: 650;
+      }
+
+      @keyframes loading-shimmer {
+        0% {
+          background-position: 100% 0;
+        }
+
+        100% {
+          background-position: 0 0;
+        }
+      }
+
+      @media (max-width: 767.98px) {
+        .app-shell {
+          align-items: flex-start;
+          padding: 16px 0;
+        }
+
+        .quiz-card {
+          min-height: 620px;
+          padding: 20px;
+        }
+
+        .quiz-header {
+          display: block;
+        }
+
+        .quiz-controls {
+          grid-template-columns: 1fr;
+          min-width: 0;
+          margin-top: 18px;
+        }
+
+        .question {
+          min-height: 130px;
+          padding: 20px;
+        }
+
+        .answers {
+          grid-template-columns: 1fr;
+        }
+
+        .quiz-actions {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+
+        .button-next,
+        .button-refresh {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app-shell">
+      <div class="container">
+        <section class="quiz-card" aria-label="Quiz de perguntas">
+          <header class="quiz-header">
+            <div>
+              <h1 class="quiz-title">Quiz</h1>
+            </div>
+
+            <div class="quiz-controls">
+              <div class="form-group mb-0">
+                <label for="my-select-cat">Categoria</label>
+                <select id="my-select-cat" class="form-control">
+                  <option value="">Todas</option>
+                </select>
+              </div>
+
+              <div class="form-group mb-0">
+                <label for="my-select-dif">Dificuldade</label>
+                <select id="my-select-dif" class="form-control">
+                  <option value="">Qualquer</option>
+                  <option value="easy">Facil</option>
+                  <option value="medium">Media</option>
+                  <option value="hard">Dificil</option>
+                </select>
+              </div>
+            </div>
+          </header>
+
+          <div class="question text-wrap" aria-live="polite">
+            Carregando pergunta...
+          </div>
+
+          <div class="answers">
+            <button class="form-control answer-button" type="button"></button>
+            <button class="form-control answer-button" type="button"></button>
+            <button class="form-control answer-button" type="button"></button>
+            <button class="form-control answer-button" type="button"></button>
+          </div>
+
+          <div class="quiz-actions">
+            <button type="button" class="button-refresh btn btn-primary">Recarregar</button>
+            <button type="button" class="button-next btn btn-primary">Proxima</button>
+          </div>
+
+          <div class="quiz-status" aria-live="polite"></div>
+        </section>
+      </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="quiz.js"></script>
+  </body>
+</html>
