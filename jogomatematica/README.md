@@ -1,6 +1,6 @@
 # Jogo de Matemática
 
-Este é um projeto simples de um jogo de matemática interativo que utiliza funcionalidades de arrastar e soltar (Drag and Drop) para responder a questões matemáticas.
+Este é um jogo de matemática interativo por seleção de resposta (click-to-select), com múltiplos modos de jogo, ranking local, conquistas e suporte a PWA (funciona offline).
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -8,16 +8,21 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 - **HTML5**: Estrutura da página.
 - **CSS3**: Estilização customizada.
-- **Bootstrap 5.3.0**: Framework CSS para layout responsivo.
-- **Interact.js**: Biblioteca JavaScript para lidar com interações de arrastar e soltar.
+- **JavaScript (ES Modules)**: Lógica do jogo, sem framework, dividida em módulos por responsabilidade.
+- **Bootstrap 5.3.0**: Framework CSS para layout responsivo (cópia local em `vendor/`, funciona offline).
+- **Service Worker + Web App Manifest**: Instalação como PWA e cache para uso offline.
 
 ## 📂 Estrutura do Projeto
 
-O projeto consiste nos seguintes arquivos:
+O projeto consiste nos seguintes arquivos e pastas:
 
-- `index.html`: Ponto de entrada da aplicação, contendo a estrutura da questão e das opções de resposta.
-- `style.css`: Definições visuais para a zona de drop (dropzone) e para os elementos arrastáveis.
-- `gamemtm.js`: Lógica de interação utilizando a biblioteca Interact.js.
+- `index.html`: Ponto de entrada da aplicação, com as telas de menu, jogo e fim de jogo.
+- `style.css`: Estilos base (reset, variáveis, estilos compartilhados).
+- `manifest.json`: Manifesto da PWA.
+- `service-worker.js`: Cache offline (estratégia cache-first).
+- `js/`: Módulos ES da lógica do jogo — `main.js` (ponto de entrada), `estado.js`, `perguntas.js`, `hud.js`, `timer.js`, `validacao.js`, `respostas.js`, `ranking.js`, `duelo.js`, `desafio-diario.js`, módulos de engajamento (`conquistas.js`, `xp.js`, `confete.js`, `avatares.js`, `compartilhar.js`, `som.js`, `acessibilidade.js`) e os modos de pergunta em `js/modos/` (`contagem`, `maior-menor`, `operacao-inversa`, `fracoes`, `sequencias`, `encadeadas`).
+- `vendor/`: Cópia local do Bootstrap (fallback offline).
+- `assets/icones/`: Ícones da PWA.
 
 ## 🎮 Como Funciona
 
